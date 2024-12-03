@@ -19,9 +19,9 @@ This action allows you to deploy a Docker image to a Railway service using Railw
 
 ~~~yaml
 - name: Deploy to Railway
-  uses: your-username/railway-deploy-image@v1
+  uses: xngen-ai/railway-deploy-image@v1
   with:
-    railway_token: ${{ secrets.RAILWAY_TOKEN }}
+    railway_token: ${{ secrets.RAILWAY_BEARER }}
     image_url: ${{ steps.image_info.outputs.IMAGE_FULL_NAME }}:${{ steps.image_info.outputs.IMAGE_TAG }}
     service_id: ${{ secrets.RW_SERVICE_ID_DEV }}
     environment_id: ${{ secrets.RW_ENVIRONMENT_ID_DEV }}
@@ -45,7 +45,7 @@ jobs:
       # Add steps to build and push your Docker image
       
       - name: Deploy to Railway
-        uses: your-username/railway-deploy-image@v1
+        uses: xngen-ai/railway-deploy-image@v1
         with:
           railway_token: ${{ secrets.RAILWAY_TOKEN }}
           image_url: ${{ steps.image_info.outputs.IMAGE_FULL_NAME }}:${{ steps.image_info.outputs.IMAGE_TAG }}

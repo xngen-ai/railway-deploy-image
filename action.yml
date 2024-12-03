@@ -1,0 +1,40 @@
+name: 'Railway Deploy Image'
+description: 'Deploy a Docker image to Railway service'
+author: 'TronStar'
+branding:
+  icon: 'upload-cloud'
+  color: 'black'
+inputs:
+  railway_token:
+    description: 'Railway API token'
+    required: true
+  image_url:
+    description: 'Full Docker image URL with tag'
+    required: true
+  service_id:
+    description: 'Railway service ID'
+    required: true
+  environment_id:
+    description: 'Railway environment ID'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    
+    - name: Install dependencies
+      shell: bash
+      run: pip install requests
+    
+    - name: Deploy to Railway
+      shell: bash
+      env:
+        AUTHORIZATION_TOKEN: ${{ inputs.railway_token }}
+        IMAGE_URL: ${{ inputs.image_url }}
+        SERVICE_ID: ${{ inputs.service_id }}
+        ENVIRONMENT_ID: ${{ inputs.environment_id }}
+      run: python ${{ github.action_path }}/src/deploy.py 

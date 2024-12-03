@@ -1,0 +1,23 @@
+name: Test Action
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_url:
+        description: 'Docker image URL to deploy'
+        required: true
+        default: 'nginx:latest'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Test Railway Deploy Action
+        uses: ./
+        with:
+          railway_token: ${{ secrets.RAILWAY_BEARER }}
+          image_url: ${{ inputs.image_url }}
+          service_id: ${{ secrets.RW_TEST_SERVICE_ID }}
+          environment_id: ${{ secrets.RW_TEST_ENVIRONMENT_ID }} 

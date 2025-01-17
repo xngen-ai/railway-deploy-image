@@ -94,9 +94,7 @@ def deploy_image() -> None:
                 "image": image_url
             },
             "multiRegionConfig": {
-                "regions": {
-                    "us-west1": {}
-                }
+                "us-west1": {}
             },
             "region": "us-west1"
         },

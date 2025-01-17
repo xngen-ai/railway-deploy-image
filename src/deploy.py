@@ -92,7 +92,8 @@ def deploy_image() -> None:
         "input": {
             "source": {
                 "image": image_url
-            }
+            },
+            "region": "us-west1"
         },
         "serviceId": service_id
     }

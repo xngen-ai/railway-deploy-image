@@ -93,6 +93,11 @@ def deploy_image() -> None:
             "source": {
                 "image": image_url
             },
+            "multiRegionConfig": {
+                "regions": {
+                    "us-west1": {}
+                }
+            },
             "region": "us-west1"
         },
         "serviceId": service_id
